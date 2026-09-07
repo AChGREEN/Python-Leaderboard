@@ -50,7 +50,7 @@ def leaderboard():
     with sqlite3.connect(DB_NAME) as conn:
         cur = conn.cursor()
         # Get all name and score entries from the database (in order they were added)
-        cur.execute('SELECT name, score, seconds FROM scores')
+        cur.execute('SELECT name, score, seconds FROM scores ORDER BY score DESC')
         entries = cur.fetchall()
 
     # Send the HTML page with the most recent leaderboard
