@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarav's Home Page — Data Deal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='')}}">
+</head>
+
+<body>
+
+    <header id="aarav-header" class="page-header">
+        <span class="left-item">
+            <a href="Aarav-Main.html">
+                <img class="logo" id="datadeal-logo" src="{{ url_for('static', filename= 'data deal icon.png')}}" alt="Data Deal logo">
+            </a>
+            <h1>Data Deal</h1>
+        </span>
+        <nav id="contents" class="center-item" aria-label="Group project navigation">
+            <a class="hyperlink animated-hyperlink aarav" href="Albarr-Main.html">QFAP</a>
+            <a class="hyperlink animated-hyperlink aarav" href="Muhammad-Main.html">CM</a>
+            <a class="hyperlink aarav" style="background-color: #1e579c;" href="Aarav-Main.html">
+                <i style="color: gray;">DD</i>
+            </a>
+        </nav>
+        <span class="right-item">
+            <h1>Back to Home</h1>
+            <a href="index.html">
+                <img class="logo" src="{{ url_for('static', filename='no.png')}}" alt="Go to checkout page">
+            </a>
+        </span>
+    </header>
+
+      <form class="boxed-text" method="POST">
+        Name: <input type="text" name="name" required>
+        Score: <input type="number" name="score" required>
+        Time: <input type="number" name="seconds" required>
+        <input type="submit" value="Submit">
+    </form> 
+    
+    <h2>Leaderboard</h2>
+    <div class="boxed-text">
+     <ul class="leaderboard-table">
+    <!-- Table Header Row -->
+              <li class="table-header">
+                 <span>Name</span>
+                 <span>Score</span>
+                 <span>Time</span>
+               </li>
+    
+             <!-- Table Data Rows -->
+       {% for name, score, seconds in entries %}
+        <li class="table-row">
+            <span>{{ name }}</span>
+         <span>{{ score }}</span>
+         <span>{{ seconds }}s</span>
+        </li>
+         {% endfor %}
+      </ul>
+    </div>
+
+
+
+    <footer class="site-footer">
+        <section class="columns">
+            <div>
+                <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to top ⬆</button>
+            </div>
+            <div>
+                <img src="{{ url_for('static', filename='mascot.png')}}" class="mascot" alt="Gamedev Club Gamedevs Mascot" width=200px>
+            </div>
+            <div>
+                <p><b>Gamedev Club Gamedevs</b></p>
+                <h6>You Think It. We Built It!</h6>
+            </div>
+        </section>
+        <br><br>
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="games.html">Games</a>
+            <a href="Checkout.html">Checkout</a>
+            <a href="Albarr-Main.html">QFAP</a>
+            <a href="Muhammad-Main.html">CyberMatch</a>
+            <a href="Aarav-Main.html">Data Deal</a>
+        </nav>
+        <br>
+        <hr color="#ff00c4">
+        <br>
+        <h5>© 2026 Gamedev Club Gamedevs. No Rights Reserved</h5>
+    </footer>
+</body>
+
+</html>
