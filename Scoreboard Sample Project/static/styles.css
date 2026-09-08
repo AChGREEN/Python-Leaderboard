@@ -422,7 +422,7 @@ ul {
 
 .aarav-page li {
     margin: 10px 0;
-    padding: 12px 18px;
+    padding: 20px 18px;
     color: #ffffff;
     background-color: rgba(30, 87, 156, 0.28);
     border-left: 4px solid #0ce6f2;
@@ -466,55 +466,6 @@ ul {
 
 .aarav-page .aarav-requirements .sub-subheading {
     color: #0ce6f2;
-}
-
-/* ==========================================
-   CSS FOR ALBARR'S PAGE
-   ========================================== */
-
-.alb-page {
-    font-family: 'JetBrains Mono', monospace;
-    background-image: url(albarr-background.png);
-    background-size: contain;
-}
-
-.alb-page .content {
-    background-color: rgba(20, 8, 8, 0.9);
-    border: solid 2px rgb(71, 1, 1);
-    transition: all 0.4s ease;
-}
-
-.alb-page .content:hover {
-    box-shadow: 0 5px 40px 15px rgba(22, 4, 4, 0.9);
-}
-
-.alb-page .floating-section {
-    background-color: rgb(34, 10, 10);
-    border: solid 2px rgb(85, 1, 1);
-}
-
-.alb-page .left-item {
-    text-align: left;
-    align-items: center;
-    display: flex;
-    color: #ce3009;
-}
-
-.alb-page .subheading,
-.alb-page .sub-subheading {
-    font-family: 'Space Grotesk', sans-serif;
-}
-
-.alb-page .subheading {
-    color: #ce3009;
-}
-
-.alb-page .sub-subheading {
-    color: #e6937e;
-}
-
-.alb-page .preview {
-    flex: 1;
 }
 
 /* ==========================================

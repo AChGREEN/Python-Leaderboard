@@ -35,32 +35,45 @@
 
       <form class="boxed-text" method="POST">
         Name: <input type="text" name="name" required>
-        Score: <input type="number" name="score" required>
-        Time: <input type="number" name="seconds" required>
+        Score: <input type="number" name="score" max="999999" required>
+        Time: <input type="number" name="seconds" max="" required>
         <input type="submit" value="Submit">
     </form> 
     
     <h2>Leaderboard</h2>
-    <div class="boxed-text">
-     <ul class="leaderboard-table">
+
+<!--
+        <table>
+        <th>table header</th>
+    {% for name, score, seconds in entries %}
+    <tr>
+        <td>{{ name }}</td>
+        <td> {{ score }}</td>
+        <td> {{ seconds }}s</td>
+    </tr>
+    {% endfor %}
+
+    </table>
+    -->
+
+    <table class="boxed-text">
+     <th class="leaderboard-table"></th>
     <!-- Table Header Row -->
-              <li class="table-header">
-                 <span>Name</span>
-                 <span>Score</span>
-                 <span>Time</span>
-               </li>
+              <tr class="table-header">
+                 <td>Name</td>
+                 <td>Score</td>
+                 <td>Time</td>
+              </tr>
     
              <!-- Table Data Rows -->
        {% for name, score, seconds in entries %}
-        <li class="table-row">
-            <span>{{ name }}</span>
-         <span>{{ score }}</span>
-         <span>{{ seconds }}s</span>
-        </li>
+        <tr class="table-row">
+            <td>{{ name }}</td>
+            <td>{{ score }}</td>
+            <td>{{ seconds }}s</td>
+        </tr>
          {% endfor %}
-      </ul>
-    </div>
-
+      </table>
 
 
     <footer class="page-footer">
