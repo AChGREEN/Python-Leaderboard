@@ -682,14 +682,10 @@ ul {
   z-index: 10;
   position: relative;
 
-    animation: dynamicGlow 3s ease infinite, insanePulse 2s ease-in-out infinite alternate;
+    animation: dynamicGlow 3s ease infinite, lockedinPulse 2s ease-in-out infinite alternate;
 }
 
-.leaderboard-table li.table-row:nth-child(3),
-.leaderboard-table li.table-row:nth-child(4) {
-  background-color: #233440;
-  font-size: 1.1rem; 
-}
+
 
 
 @keyframes dynamicGlow {
@@ -715,4 +711,9 @@ ul {
     transform: scale(1.12) translateZ(40px) rotateX(2deg);
   }
 }
+
+
+
+
+
 
