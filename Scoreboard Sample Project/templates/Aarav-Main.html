@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarav's Home Page — Data Deal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='data deal icon.png') }}">
+</head>
+
+<body class="aarav-page" background="{{ url_for('static', filename='data deal background.png') }}" size="100%">
+    <header id="aarav-header" class="page-header">
+        <span class="left-item">
+            <a href="{{ url_for('data_deal_home') }}">
+                <img class="logo" id="datadeal-logo" src="{{ url_for('static', filename='data deal icon.png') }}" alt="Data Deal logo">
+            </a>
+            <h1>Data Deal</h1>
+        </span>
+        <nav id="contents" class="center-item" aria-label="Group project navigation">
+            <a class="hyperlink animated-hyperlink aarav" href={{ url_for('leaderboard_page')}}>Leaderboard</a>
+            </a>
+        </nav>
+        <span class="right-item">
+            <h1>Back to Home</h1>
+            <a href=></a>
+                <img class="logo" src="{{ url_for('static', filename='no.png') }}" alt="Go to checkout page">
+            </a>
+        </span>
+    </header>
+    <br>
+    <section class="content">
+    <main>
+        <h1>About the Game</h1>
+        <p class="boxed-text">
+            Data Deal became a popular game by turning everyday online safety decisions into an entertaining
+            challenge. Players are placed in realistic situations involving apps, permissions, emails, passwords, and
+            suspicious online offers, then must decide whether to accept or reject each choice. The questions become
+            more difficult as the game progresses, testing the player's attention, judgement, and understanding of
+            cybersecurity while rewarding careful thinking with a higher score.
+            <br><br>
+            The game attracted a large community because it was easy to understand, enjoyable to replay, and created
+            plenty of surprising moments. Its popularity grew even further when many streamers played it live,
+            sharing their reactions, mistakes, and decisions with audiences around the world. Viewers could compare
+            their own choices with the streamers' answers, which helped Data Deal reach an even wider audience.
+        </p>
+
+        <h1>How to Play</h1>
+        <div class="choice-box">
+            <p>
+                You will be presented with scenarios involving apps, permissions, emails, and security choices.
+                Answer each question by pressing ACCEPT (green button) or REJECT (red button).
+            </p>
+            <ul>
+                <li>ACCEPT = the app/action is safe and legitimate</li>
+                <li>REJECT = the app/action is dangerous, fake, or a scam</li>
+            </ul>
+        </div>
+        <p class="boxed-text">
+            A/D and Right/Left arrow can be used to Accept/Reject instead of using a mouse.
+            Read the tips carefully after each question — they explain why your answer was correct or incorrect.
+            When prompted to enter a password, enter a strong password above 15 characters.
+            There is TTS for accessibility by default; if you don't want to listen to TTS, just play on mute.
+        </p>
+
+        <h1>Educational Purpose</h1>
+        <div class="boxed-text">
+           This game educates players about which app permissions are legitimate and which are red flags. Players learn which permissions apps like Spotify, YouTube, and banking apps genuinely need versus apps that ask for excessive access. Tips explain why apps like “CoolKeyboard” (a keylogger) or “W1ndows Update” (a fake update) are dangerous. 
+           <ul>
+                <li>Day 1 introduces foundational concepts (app safety)</li>
+                <li>Day 2 deepens understanding (real-world privacy scenarios)</li>
+                <li>Day 3 integrates all knowledge (passwords, phishing, scams)</li>
+                <li>Boss Fight (expert-level scenarios combining all three days)</li>
+            </ul>
+           <b>Feedback Mechanisms:</b>
+           After every answer, players receive immediate feedback explaining the correct answer. This allows players to learn why they got it wrong and will be able to remember to use their knowledge in real life.
+        </div>
+
+        <h1>Gameplay</h1>
+        <div class="boxed-text">
+            <img src="data deal gameplay.png" class="gameplayscreen" width="90%" alt="Data Deal boxart">
+            <p>
+                The game is played in rounds, with each round consisting of a series of questions. The questions
+                become more difficult as the player progresses, testing their knowledge and decision-making skills.
+                Players can earn points for correct answers and lose points for incorrect answers. The goal is to
+                achieve the highest score possible by the end of the game.
+            </p>
+        </div>
+
+        <h1>Specifications</h1>
+        <section class="floating-section aarav-requirements">
+            <p style="text-align: left;">
+                <b>CPU:</b> Dual-core processor or faster
+                <br>
+                <b>GPU:</b> Graphics card with hardware acceleration
+                <br>
+                <b>RAM:</b> 4GB or more
+                <br>
+                <b>Storage:</b> 2GB of available space
+                <br>
+                <b>Controls:</b> Mouse click, A/D, or Left/Right arrow keys
+                <br>
+                <b>Audio:</b> Text-to-speech narration can be muted
+                <br>
+                <b>Internet:</b> Required for online features and updates, accessed with <strong>Cyber Plus</strong>
+            </p>
+        </section>
+        <h1>Don't wait on the fun!</h1>
+        <section class="bundle-box">
+            <h2>Get the Cyber Bundle</h2>
+            <p>Bring home Data Deal and our other cyber games in one discounted bundle.</p>
+            <h3>Only $110.00 for 3 games!</h3>
+            <button class="btn bundle-button" onclick='window.location.href = "Checkout.html"'>
+                <b>Buy the <i>Cyber Bundle</i> Now!</b>
+            </button>
+        </section>
+    </main>
+    </section>
+
+    <hr color="#ff00c4">
+    <footer class="site-footer">
+        <section class="columns">
+            <div>
+                <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to top ⬆</button>
+            </div>
+            <div>
+                <img src="mascot.png" class="mascot" alt="Gamedev Club Gamedevs Mascot" width=200px onclick="alert('Meow')">
+            </div>
+            <div>
+                <p><b>Gamedev Club Gamedevs</b></p>
+                <h6>You Think It. We Built It!</h6>
+            </div>
+        </section>
+        <br><br>
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="games.html">Games</a>
+            <a href="Checkout.html">Checkout</a>
+            <a href="Albarr-Main.html">QFAP</a>
+            <a href="Muhammad-Main.html">CyberMatch</a>
+            <a href="Aarav-Main.html">Data Deal</a>
+        </nav>
+        <br>
+        <hr color="#ff00c4">
+        <br>
+        <h5>© 2026 Gamedev Club Gamedevs. No Rights Reserved</h5>
+    </footer>
+
+    <script src="Aarav.js" defer></script>
+    <script>
+        history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+    </script>
+</body>
+
+</html>

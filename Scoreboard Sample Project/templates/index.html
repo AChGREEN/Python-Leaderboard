@@ -19,24 +19,29 @@
             <h1>Data Deal</h1>
         </span>
         <nav id="contents" class="center-item" aria-label="Group project navigation">
-            <a class="hyperlink animated-hyperlink aarav" href="Albarr-Main.html">QFAP</a>
-            <a class="hyperlink animated-hyperlink aarav" href="Muhammad-Main.html">CM</a>
-            <a class="hyperlink aarav" style="background-color: #1e579c;" href="Aarav-Main.html">
-                <i style="color: gray;">DD</i>
+            <a class="hyperlink animated-hyperlink aarav" href="{{ url_for('data_deal_home') }}">Back to Data Deal Homepage</a>
             </a>
         </nav>
         <span class="right-item">
             <h1>Back to Home</h1>
-            <a href="index.html">
+            <a href="{{ url_for('leaderboard') }}">
                 <img class="logo" src="{{ url_for('static', filename='no.png')}}" alt="Go to checkout page">
             </a>
         </span>
     </header>
 
-      <form class="boxed-text" method="POST">
-        Name: <input type="text" name="name" required>
-        Score: <input type="number" name="score" max="999999" required>
-        Time: <input type="number" name="seconds" max="" required>
+    <form method="GET" class="boxed-text">
+        <input type="text" name="search" placeholder="Search by name…" value="{{ search }}">
+        <input type="submit" value="Search">
+        {% if search %}
+        <a href="/">Clear</a>
+        {% endif %}
+    </form>
+    
+    <form class="boxed-text" method="POST">
+        Name: <input type="text" name="name" maxlength="30" required>
+        Score: <input type="number" name="score" max="999999" min="0" required>
+        Time: <input type="number" name="seconds" max="999999" min="0" required>
         <input type="submit" value="Submit">
     </form> 
     
@@ -56,24 +61,37 @@
     </table>
     -->
 
-    <table class="boxed-text">
-     <th class="leaderboard-table"></th>
-    <!-- Table Header Row -->
-              <tr class="table-header">
-                 <td>Name</td>
-                 <td>Score</td>
-                 <td>Time</td>
-              </tr>
-    
-             <!-- Table Data Rows -->
-       {% for name, score, seconds in entries %}
-        <tr class="table-row">
-            <td>{{ name }}</td>
-            <td>{{ score }}</td>
-            <td>{{ seconds }}s</td>
-        </tr>
-         {% endfor %}
+    <div class="leaderboard-wrapper">
+      <table class="leaderboard-table">
+        <thead>
+          <tr class="table-header">
+            <th>Name</th>
+            <th>Score</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for name, score, seconds in entries %}
+          <tr class="table-row">
+              <td>{{ name }}</td>
+              <td>{{ score }}</td>
+              <td>{{ seconds }}s</td>
+          </tr>
+          {% endfor %}
+        </tbody>
       </table>
+    </div>
+      <div class="pagination">
+         {% if page > 1 %}
+         <a href="?page={{ page - 1 }}&search={{ search }}">← Previous</a>
+         {% endif %}
+
+         <span>Page {{ page }} of {{ total_pages }}</span>
+
+         {% if page < total_pages %}
+         <a href="?page={{ page + 1 }}&search={{ search }}">Next →</a>
+         {% endif %}
+        </div>
 
 
     <footer class="page-footer">

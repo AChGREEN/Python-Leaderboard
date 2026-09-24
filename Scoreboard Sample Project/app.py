@@ -10,6 +10,17 @@ app = Flask(__name__)
 # Name of the database file 
 DB_NAME = 'scores.db'
 
+# How many entries to show per leaderboard page
+PER_PAGE = 10
+
+@app.route('/data-deal-home')
+def data_deal_home():
+    return render_template('Aarav-Main.html')
+
+@app.route('/leaderboard-page')
+def leaderboard_page():
+    return leaderboard()
+
 # This function sets up the database if it doesn't already exist
 def init_db():
     # Connect to the SQLite database (it will be created if it doesn't exist)
@@ -27,42 +38,57 @@ def init_db():
             )
         ''')
 
-#This specifies that the following function will run whenever there's any actions taken on the web page
 @app.route('/', methods=['GET', 'POST'])
-
-# This function handles both displaying the leaderboard and submitting scores
 def leaderboard():
-    # If someone has submitted the form (POST request), save their data
     if request.method == 'POST':
-        # Get the name and score that the player entered in the form
         name = request.form['name']
         score = request.form['score']
-        seconds = request.form['seconds']        
-        
-        # Save the new score into the database
+        seconds = request.form['seconds']
+
         with sqlite3.connect(DB_NAME) as conn:
-            conn.execute('INSERT INTO scores (name, score, seconds) VALUES (?, ?, ?)', (name, score, seconds))
-        
-        # Redirect the user back to the main page after submitting
+            conn.execute(
+                'INSERT INTO scores (name, score, seconds) VALUES (?, ?, ?)',
+                (name, score, seconds)
+            )
+
         return redirect('/')
-    
-    # If it's a normal page load (GET request), show the leaderboard
+
+    search = request.args.get('search', '').strip()
+    try:
+        page = int(request.args.get('page', 1))
+    except ValueError:
+        page = 1
+
+    if page < 1:
+        page = 1
+
+    offset = (page - 1) * PER_PAGE
+    like_term = f'%{search}%'
+
     with sqlite3.connect(DB_NAME) as conn:
-        cur = conn.cursor()
-        # Get all name and score entries from the database (in order they were added)
-        cur.execute('SELECT name, score, seconds FROM scores ORDER BY score DESC')
-        entries = cur.fetchall()
+        total_count = conn.execute(
+            'SELECT COUNT(*) FROM scores WHERE name LIKE ?',
+            (like_term,)
+        ).fetchone()[0]
 
-    # Send the HTML page with the most recent leaderboard
-    return render_template('index.html', entries=entries)
+        entries = conn.execute(
+            'SELECT name, score, seconds FROM scores WHERE name LIKE ? ORDER BY score DESC, seconds ASC LIMIT ? OFFSET ?',
+            (like_term, PER_PAGE, offset)
+        ).fetchall()
 
-#----- Mainline program: This code executes when we run this file.-----#
+    total_pages = max(1, (total_count + PER_PAGE - 1) // PER_PAGE)
+    if page > total_pages:
+        page = total_pages
 
-init_db()  # Set up the database before starting the web app
+    return render_template(
+        'index.html',
+        entries=entries,
+        page=page,
+        total_pages=total_pages,
+        search=search
+    )
 
-# Start the Flask server for local testing (Comment the version not being used)
-app.run(debug=True)  
-# Use this version when testing on your computer only
 
-#app.run(debug=True, host='0.0.0.0') 
-# Use this version if you want to test it on a phone/tablet connected to the same Wi-Fi
+if __name__ == '__main__':
+    init_db()
+    app.run(host='0.0.0.0', port=5000, debug=True)
