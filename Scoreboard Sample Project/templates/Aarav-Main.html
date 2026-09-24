@@ -12,19 +12,18 @@
 <body class="aarav-page" background="{{ url_for('static', filename='data deal background.png') }}" size="100%">
     <header id="aarav-header" class="page-header">
         <span class="left-item">
-            <a href="{{ url_for('data_deal_home') }}">
+            <a href="{{ url_for('leaderboard') }}">
                 <img class="logo" id="datadeal-logo" src="{{ url_for('static', filename='data deal icon.png') }}" alt="Data Deal logo">
             </a>
             <h1>Data Deal</h1>
         </span>
         <nav id="contents" class="center-item" aria-label="Group project navigation">
-            <a class="hyperlink animated-hyperlink aarav" href={{ url_for('leaderboard_page')}}>Leaderboard</a>
-            </a>
+            <a class="hyperlink animated-hyperlink aarav" href="{{ url_for('leaderboard') }}">Leaderboard</a>
         </nav>
         <span class="right-item">
             <h1>Back to Home</h1>
-            <a href=></a>
-                <img class="logo" src="{{ url_for('static', filename='no.png') }}" alt="Go to checkout page">
+            <a href="{{ url_for('leaderboard') }}">
+                <img class="logo" src="{{ url_for('static', filename='no.png') }}" alt="Go to leaderboard home page">
             </a>
         </span>
     </header>
@@ -117,14 +116,13 @@
     </main>
     </section>
 
-    <hr color="#ff00c4">
-    <footer class="site-footer">
+    <footer class="page-footer">
         <section class="columns">
             <div>
                 <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to top ⬆</button>
             </div>
             <div>
-                <img src="mascot.png" class="mascot" alt="Gamedev Club Gamedevs Mascot" width=200px onclick="alert('Meow')">
+                <img src="{{ url_for('static', filename='mascot.png') }}" class="mascot" alt="Gamedev Club Gamedevs Mascot" width="200" onclick="alert('Meow')">
             </div>
             <div>
                 <p><b>Gamedev Club Gamedevs</b></p>
@@ -133,15 +131,13 @@
         </section>
         <br><br>
         <nav class="footer-links" aria-label="Footer navigation">
-            <a href="index.html">Home</a>
-            <a href="games.html">Games</a>
-            <a href="Checkout.html">Checkout</a>
-            <a href="Albarr-Main.html">QFAP</a>
-            <a href="Muhammad-Main.html">CyberMatch</a>
-            <a href="Aarav-Main.html">Data Deal</a>
+            <a href="{{ url_for('leaderboard') }}">Home</a>
+            <a href="{{ url_for('leaderboard') }}">Games</a>
+            <a href="{{ url_for('leaderboard') }}">Checkout</a>
+            <a href="{{ url_for('leaderboard') }}">QFAP</a>
+            <a href="{{ url_for('leaderboard') }}">CyberMatch</a>
+            <a href="{{ url_for('data_deal_home') }}">Data Deal</a>
         </nav>
-        <br>
-        <hr color="#ff00c4">
         <br>
         <h5>© 2026 Gamedev Club Gamedevs. No Rights Reserved</h5>
     </footer>

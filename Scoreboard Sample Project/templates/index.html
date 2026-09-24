@@ -6,26 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarav's Home Page — Data Deal</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='')}}">
+    <link rel="icon" href="{{ url_for('static', filename='data deal icon.png')}}">
 </head>
 
 <body class="aarav-page">
 
     <header id="aarav-header" class="page-header">
         <span class="left-item">
-            <a href="Aarav-Main.html">
-                <img class="logo" id="datadeal-logo" src="{{ url_for('static', filename= 'data deal icon.png')}}" alt="Data Deal logo">
+            <a href="{{ url_for('data_deal_home') }}">
+                <img class="logo" id="datadeal-logo" src="{{ url_for('static', filename='data deal icon.png') }}" alt="Data Deal logo">
             </a>
             <h1>Data Deal</h1>
         </span>
         <nav id="contents" class="center-item" aria-label="Group project navigation">
-            <a class="hyperlink animated-hyperlink aarav" href="{{ url_for('data_deal_home') }}">Back to Data Deal Homepage</a>
-            </a>
+            <a class="hyperlink animated-hyperlink aarav" href="{{ url_for('data_deal_home') }}">Homepage</a>
         </nav>
         <span class="right-item">
             <h1>Back to Home</h1>
             <a href="{{ url_for('leaderboard') }}">
-                <img class="logo" src="{{ url_for('static', filename='no.png')}}" alt="Go to checkout page">
+                <img class="logo" src="{{ url_for('static', filename='no.png') }}" alt="Go to leaderboard home page">
             </a>
         </span>
     </header>
@@ -47,35 +46,21 @@
     
     <h2>Leaderboard</h2>
 
-<!--
-        <table>
-        <th>table header</th>
-    {% for name, score, seconds in entries %}
-    <tr>
-        <td>{{ name }}</td>
-        <td> {{ score }}</td>
-        <td> {{ seconds }}s</td>
-    </tr>
-    {% endfor %}
-
-    </table>
-    -->
-
     <div class="leaderboard-wrapper">
       <table class="leaderboard-table">
         <thead>
           <tr class="table-header">
-            <th>Name</th>
+            <bold><th>Name</th>
             <th>Score</th>
-            <th>Time</th>
+            <th>Time</th></bold>
           </tr>
         </thead>
         <tbody>
           {% for name, score, seconds in entries %}
-          <tr class="table-row">
+          <tr class="table-row{% if page == 1 and loop.index == 1 %} rank-first{% elif page == 1 and loop.index == 2 %} rank-second{% elif page == 1 and loop.index == 3 %} rank-third{% endif %}">
               <td>{{ name }}</td>
               <td>{{ score }}</td>
-              <td>{{ seconds }}s</td>
+              <td>{{ seconds | hrsminsec }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -85,14 +70,11 @@
          {% if page > 1 %}
          <a href="?page={{ page - 1 }}&search={{ search }}">← Previous</a>
          {% endif %}
-
          <span>Page {{ page }} of {{ total_pages }}</span>
-
          {% if page < total_pages %}
          <a href="?page={{ page + 1 }}&search={{ search }}">Next →</a>
          {% endif %}
         </div>
-
 
     <footer class="page-footer">
         <section class="columns">

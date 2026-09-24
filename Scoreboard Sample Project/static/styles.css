@@ -120,11 +120,14 @@ ul {
     flex-wrap: wrap;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 18px;
 }
 
 .page-footer {
     width: 100%;
     box-sizing: border-box;
+    margin-top: 22px;
+    padding-top: 18px;
 }
 
 #muhammad-header {
@@ -412,11 +415,13 @@ ul {
     }
 }
 
+.site-footer,
 .page-footer {
     background-color: rgb(31, 28, 30);
     padding: 12px 12px 24px;
     vertical-align: middle;
     border: none;
+    border-top: 3px solid #ff00c4;
     color: inherit;
 }
 
@@ -654,7 +659,7 @@ ul {
 
 .aarav-page .boxed-text {
     max-width: 900px;
-    margin: 0 auto 16px;
+    margin: 16px auto 16px;
     padding: 20px;
     color: #ffffff;
     background-color: rgba(37, 36, 70, 0.8);
@@ -666,16 +671,23 @@ ul {
 }
 
 .aarav-page .leaderboard-wrapper {
-    width: min(100%, 900px);
-    margin: 0 auto 18px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    width: min(100%, 1100px);
+    margin: 18px auto 18px;
+    overflow: hidden;
+    border: 2px solid #0ce6f2;
+    border-radius: 12px;
+    background: rgba(17, 16, 28, 0.75);
+}
+
+.aarav-page .pagination {
+    margin: 16px auto 0;
 }
 
 .aarav-page .leaderboard-table {
     width: 100%;
     min-width: 0;
     border-collapse: collapse;
+    margin: 0 auto;
 }
 
 .aarav-page .choice-box {
@@ -888,9 +900,6 @@ ul {
     }
 }
 
-
-
-
 .leaderboard-table {
   list-style: none;
   padding: 0;
@@ -908,17 +917,20 @@ ul {
   grid-template-columns: 2fr 1fr 1fr; 
   padding: 10px;
   text-align: center;
-  align-items: center; 
+  align-items: center;
+  justify-items: center;
 }
 
 .table-header {
   font-weight: bold;
   border-bottom: 2px solid #ff00c4; 
+  background: rgba(12, 230, 242, 0.12);
 }
 
 .table-row {
   border-bottom: 1px solid #eee;
   transition: all 0.3s ease; 
+  place-items: center;
 }
 
 .table-row:last-child {
@@ -929,7 +941,8 @@ ul {
   background-color: #818181; 
 }
 
-.leaderboard-table tr.table-row:nth-child(1)  {
+
+.leaderboard-table tr.table-row.rank-first {
   background: linear-gradient(45deg, #ffd700, #ff8800, #ff0055, #ffd700);
   background-size: 400% 400%;
   font-weight: bold;
@@ -944,8 +957,35 @@ ul {
     animation: dynamicGlow 3s ease infinite, lockedinPulse 2s ease-in-out infinite alternate;
 }
 
+.leaderboard-table tr.table-row.rank-second {
+  background: linear-gradient(45deg, #c0c0c0, #e8e8e8, #a8a8a8, #c0c0c0);
+  background-size: 400% 400%;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  text-shadow: 0 0 6px #fff;
+  border: 2px solid #e8e8e8;
+  box-shadow: 0 0 14px #c0c0c0, inset 0 0 10px rgba(255,255,255,0.5);
+  z-index: 9;
+  position: relative;
 
+    animation: silverGlow 3.5s ease infinite, medalPulse 2.2s ease-in-out infinite alternate;
+}
 
+.leaderboard-table tr.table-row.rank-third {
+  background: linear-gradient(45deg, #cd7f32, #e3a869, #8c5a2b, #cd7f32);
+  background-size: 400% 400%;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  text-shadow: 0 0 6px #000;
+  border: 2px solid #e3a869;
+  box-shadow: 0 0 10px #cd7f32, inset 0 0 8px rgba(255,255,255,0.35);
+  z-index: 8;
+  position: relative;
+
+    animation: bronzeGlow 4s ease infinite, medalPulse 2.4s ease-in-out infinite alternate;
+}
 
 @keyframes dynamicGlow {
   0% {
@@ -962,6 +1002,36 @@ ul {
   }
 }
 
+@keyframes silverGlow {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 14px #c0c0c0, 0 0 24px #e8e8e8;
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 22px #0ce6f2, 0 0 32px #c0c0c0;
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 14px #c0c0c0, 0 0 24px #e8e8e8;
+  }
+}
+
+@keyframes bronzeGlow {
+  0% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 10px #cd7f32, 0 0 18px #e3a869;
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 16px #ff8800, 0 0 24px #cd7f32;
+  }
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 10px #cd7f32, 0 0 18px #e3a869;
+  }
+}
+
 @keyframes lockedinPulse {
   0% {
     transform: scale(1.05) translateZ(20px);
@@ -971,8 +1041,11 @@ ul {
   }
 }
 
-
-
-
-
-
+@keyframes medalPulse {
+  0% {
+    transform: scale(1.02) translateZ(10px);
+  }
+  100% {
+    transform: scale(1.06) translateZ(20px);
+  }
+}
